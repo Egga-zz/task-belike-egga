@@ -1,5 +1,5 @@
 [Name]
- 
+
 [Region / prelude]
  
 [Generic / SYNOPSIS]
@@ -15,9 +15,16 @@ command = method
 [Collect / FUNCTIONS]
 command = func
  
-[Leftovers]
  
 [Region / postlude]
  
+
+[Leftovers]
+[BugsAndLimitations]
 [Authors]
 [Legal]
+
+[SourceGitHub]
+[-Transformer]
+transformer = List
+[-H1Nester]

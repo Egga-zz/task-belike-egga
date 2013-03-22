@@ -1,4 +1,5 @@
 package Task::BeLike::EGGA;
+
 # ABSTRACT: Setup needed for perl hacking
 
 # VERSION
@@ -17,7 +18,5 @@ package Task::BeLike::EGGA;
 =cut
 
 use Modern::Perl 1.20121103;
-
-
 
 1;
