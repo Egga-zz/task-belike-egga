@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<templates>
+	<template context="perl" description="" enabled="true" name="dumper">use
+		Data::Dumper;
+		print Data::Dumper-&gt;new([${var}])-&gt;Maxdepth(2)-&gt;Sortkeys(sub {
+		return [sort keys %{shift()}] })-&gt;Dump;</template>
+	<template context="perl" description="" enabled="true" name="perl">#!/usr/angebote/perlroot/bin/perl
+
+		use strict;
+		use warnings;
+		use v5.16;
+	</template>
+	<template context="perl" description="" enabled="true" name="print">print
+		"${cursor}\n";</template>
+	<template context="perl" description="" enabled="true" name="return">return
+		${cursor};</template>
+	<template context="perl" description="" enabled="true" name="sub">sub
+		${go} {
+		my (${var}) = @_;
+		${cursor}
+		}
+	</template>
+	<template context="perl" description="" enabled="true" name="export">use
+		base qw( Exporter );
+		our @EXPORT_OK = qw(${cursor});
+	</template>
+	<template context="perl" description="" enabled="true" name="constant">use
+		Attribute::Constant;
+		my $$${var} : Constant( ${cursor} );
+	</template>
+	<template context="perl" description="" enabled="true" name="wantarray">return
+		wantarray ? @${array} : \@${array};</template>
+	</template>
+	<template context="perl" description="" enabled="true" name="if">if
+		(${cursor}) {
+
+		}
+	</template>
+	<template context="perl" description="" enabled="true" name="else">else
+		{
+		${cursor}
+		}
+	</template>
+	<template context="perl" description="" enabled="true" name="test">use
+		Test::More;
+
+		#use Idealo::Log test_mode =&gt; 1;
+
+		${cursor}
+		done_testing();
+	</template>
+	<template context="perl" description="" enabled="true" name="fetch">while
+		(my $$row = $$${stm}-&gt;fetchrow_hashref) {
+		${cursor}
+		}
+	</template>
+	<template context="perl" description="" enabled="true" name="timethese">use
+		Benchmark qw(:all) ;
+
+		my $$count = 10;
+		timethese($$count, {
+		'Name1' =&gt; sub {} ,
+		'Name2' =&gt; sub {},
+		});
+	</template>
+	<template context="perl" description="" enabled="true" name="deparse">use
+		B::Deparse;
+		my $$deparse = B::Deparse-&gt;new("-p", "-sC");
+		my $$body = $$deparse-&gt;coderef2text(${cursor});</template>
+	<template context="perl" description="" enabled="true" name="path class">use
+		Path::Class;</template>
+	<template context="perl" description="" enabled="true" name="benchmark">use
+		Benchmark qw(:all) ;
+
+		cmpthese($$count, {
+		'${name}' =&gt; sub { ${cursor} },
+		});
+	</template>
+	<template context="perl" description="" enabled="true" name="stopwatch">use
+		Time::HiRes;
+		my $$start = Time::HiRes::time;
+		print "took ". (Time::HiRes::time - $$start) ." seconds\n";
+	</template>
+	<template context="perl" description="" enabled="true" name="size">use
+		Devel::Size qw( total_size );
+		use Number::Bytes::Human qw(format_bytes);
+		my $$size = format_bytes(total_size(${cursor}));
+	</template>
+	<template context="perl" description="" enabled="true" name="argv">my
+		( $$${var} ) = @ARGV;
+		die "No ${var} given!\n" unless $$${var};
+	</template>
+	<template context="perl" description="" enabled="true" name="execute">my
+		$$stm = execute ( '${db}', 'SELECT * FROM ${table}' );
+		${cursor}
+	</template>
+	<template context="perl" description="" enabled="true" name="each">while
+		( my ( $$${key}, $$${val} ) = each ${hash}) {
+		${cursor}
+		}
+	</template>
+	<template context="perl" description="" enabled="true" name="json">use
+		JSON qw( encode_json );
+		print encode_json ${cursor};
+	</template>
+	<template context="perl" description="" enabled="true" name="version">our
+		$$VERSION = 0.1;</template>
+	<template context="perl" description="" enabled="true" name="open_read">my
+		$$${fh} = $$${file}-&gt;openr;
+
+		while (&lt;$$${fh}&gt;) {
+		chomp;
+		${cursor}
+		}
+	</template>
+	<template context="perl" description="" enabled="true" name="rule">use
+		Path::Class::Rule;
+
+		my $$rule = Path::Class::Rule-&gt;new;
+		$$rule-&gt;perl_file;
+
+		my @dirs = ( ${dir} );
+
+		my $$next = $$rule-&gt;iter( @dirs );
+		while ( my $$file = $$next-&gt;() ) {
+		${cursor}
+		}
+	</template>
+	<template context="perl" description="" enabled="true" name="lib abs">use
+		lib::abs '.';</template>
+	<template context="perl" description="" enabled="true" name="junction">use
+		Perl6::Junction qw(any);</template>
+	<template context="perl" description="" enabled="true" name="memoize">use
+		Attribute::Memoize;
+
+		sub fib :Memoize {
+	</template>
+	<template context="perl" description="" enabled="true"
+		name="test_exception">use Test::Exception;
+		throws_ok { ${code} } qr/${error}/, '${name}';
+		throws_ok( sub { $$foo-&gt;method }, 'Error::Simple', 'simple error thrown' );
+	</template>
+	<template context="perl" description="" enabled="true" name="class">use
+		MooseX::Declare;
+
+		class Idealo::${filename} {
+		${cursor}
+		}
+	</template>
+	<template context="perl" description="" enabled="true"
+		name="attribute_array">has '${cursor}' =&gt; (
+		traits =&gt; ['Array'],
+		is =&gt; 'ro',
+		isa =&gt; 'ArrayRef[Str]',
+		default =&gt; sub { [] },
+		handles =&gt; {
+		all_options =&gt; 'elements',
+		add_option =&gt; 'push',
+		map_options =&gt; 'map',
+		filter_options =&gt; 'grep',
+		find_option =&gt; 'first',
+		get_option =&gt; 'get',
+		join_options =&gt; 'join',
+		count_options =&gt; 'count',
+		has_options =&gt; 'count',
+		has_no_options =&gt; 'is_empty',
+		sorted_options =&gt; 'sort',
+		},
+		);
+	</template>
+	<template context="perl" description="" enabled="true"
+		name="attribute_hash">has '${cursor}' =&gt; (
+		traits =&gt; ['Hash'],
+		is =&gt; 'ro',
+		isa =&gt; 'HashRef[Str]',
+		default =&gt; sub { {} },
+		handles =&gt; {
+		set_option =&gt; 'set',
+		get_option =&gt; 'get',
+		has_no_options =&gt; 'is_empty',
+		num_options =&gt; 'count',
+		delete_option =&gt; 'delete',
+		option_pairs =&gt; 'kv',
+		},
+		);
+	</template>
+	<template context="perl" description="" enabled="true" name="attribute">has
+		'${attribute}' =&gt; (
+		is =&gt; 'ro',
+		lazy =&gt; 1,
+		required =&gt; 1,
+		default =&gt; '',
+		builder =&gt; '_build_${attribute}',
+		weak_ref =&gt; 1,
+		);
+	</template>
+	<template context="perl" description="" enabled="true" name="for">for
+		my $$${elem} (${cursor}) {
+		}
+	</template>
+	<template context="perl" description="" enabled="true" name="qw">qw(
+		${cursor} )</template>
+	<template context="perl" description="" enabled="true" name="while">while
+		(${cursor}) {
+
+		}
+	</template>
+	<template context="perl" description="" enabled="true" name="params_util">use
+		Params::Util qw( _SCALAR _ARRAY _HASH );</template>
+</templates>
